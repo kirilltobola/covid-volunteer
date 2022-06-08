@@ -7,7 +7,9 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="splash screen"
+        android:text="Автоволонтер"
+        android:gravity="center"
+        android:textColor="@color/purple_500"
         android:textSize="50sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -1,45 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/myOrderOwnerTextView"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/myOrderOwnerCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:textSize="10sp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
 
-    <Button
-        android:id="@+id/myOrderDoneButton"
-        android:text="Done"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/myOrderOwnerTextView"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        android:layout_marginHorizontal="20dp"
+        app:cardCornerRadius="20dp">
 
-    <Button
-        android:id="@+id/myOrderOwnerStartChatButton"
-        android:text="Start chat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        app:layout_constraintTop_toBottomOf="@id/myOrderOwnerTextView"
-        app:layout_constraintLeft_toRightOf="@id/myOrderDoneButton" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp">
 
-    <Button
-        android:id="@+id/myOrderOwnerEditButton"
-        android:text="Edit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        app:layout_constraintTop_toBottomOf="@id/myOrderOwnerTextView"
-        app:layout_constraintLeft_toRightOf="@id/myOrderOwnerStartChatButton" />
+            <TextView
+                android:id="@+id/myOrderOwnerHeadline"
+                android:text="Заголовок"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent" />
 
+            <TextView
+                android:id="@+id/myOrderOwnerOwner"
+                android:text="Медик"
+                android:textSize="20sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/myOrderOwnerHeadline"
+                app:layout_constraintLeft_toLeftOf="parent" />
+
+            <TextView
+                android:id="@+id/myOrderOwnerPerformer"
+                android:text="Волонтер"
+                android:textSize="20sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/myOrderOwnerOwner"
+                app:layout_constraintLeft_toLeftOf="parent" />
+
+            <TextView
+                android:id="@+id/myOrderOwnerStatus"
+                android:text="Статус"
+                android:textSize="20sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/myOrderOwnerPerformer"
+                app:layout_constraintLeft_toLeftOf="parent" />
+
+            <TextView
+                android:id="@+id/myOrderOwnerDate"
+                android:text="Дата"
+                android:textSize="20sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/myOrderOwnerStatus"
+                app:layout_constraintLeft_toLeftOf="parent" />
+
+            <TextView
+                android:id="@+id/myOrderOwnerAddressFrom"
+                android:text="Откуда"
+                android:textSize="20sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/myOrderOwnerDate"
+                app:layout_constraintLeft_toLeftOf="parent" />
+
+            <TextView
+                android:id="@+id/myOrderOwnerAddressTo"
+                android:text="Куда"
+                android:textSize="20sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/myOrderOwnerAddressFrom"
+                app:layout_constraintLeft_toLeftOf="parent" />
+
+            <TextView
+                android:id="@+id/myOrderOwnerComment"
+                android:text="Комментарий"
+                android:textSize="20sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/myOrderOwnerAddressTo"
+                app:layout_constraintLeft_toLeftOf="parent" />
+
+
+            <ImageButton
+                android:src="@drawable/done"
+                android:id="@+id/myOrderDoneButton"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/myOrderOwnerComment"
+                app:layout_constraintLeft_toLeftOf="parent" />
+
+            <ImageButton
+                android:id="@+id/myOrderOwnerStartChatButton"
+                android:src="@drawable/chat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                app:layout_constraintTop_toBottomOf="@id/myOrderOwnerComment"
+                app:layout_constraintLeft_toRightOf="@id/myOrderOwnerEditButton" />
+
+            <ImageButton
+                android:id="@+id/myOrderOwnerEditButton"
+                android:src="@drawable/edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                app:layout_constraintTop_toBottomOf="@id/myOrderOwnerComment"
+                app:layout_constraintLeft_toRightOf="@id/myOrderDoneButton" />
+
+            <ImageButton
+                android:id="@+id/myOrderOwnerUntieButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/close"
+                android:layout_marginTop="5dp"
+                app:layout_constraintLeft_toRightOf="@id/myOrderOwnerStartChatButton"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginStart="10dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:id="@+id/myOrderOwnerCardView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        android:layout_margin="5dp"-->
+<!--        android:padding="5dp">-->
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            xmlns:app="http://schemas.android.com/apk/res-auto">-->
+
+<!--            -->
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+<!--    </androidx.cardview.widget.CardView>-->
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -41,7 +41,11 @@
     <fragment
         android:id="@+id/orderFragment"
         android:name="com.isu.covidvolunteer.ui.order.OrderFragment"
-        android:label="OrderFragment" />
+        android:label="OrderFragment" >
+        <action
+            android:id="@+id/action_orderFragment_to_userMapsFragment"
+            app:destination="@id/userMapsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.isu.covidvolunteer.ui.user.ProfileFragment"
@@ -49,7 +53,17 @@
     <fragment
         android:id="@+id/myOrderFragment"
         android:name="com.isu.covidvolunteer.ui.order.MyOrderFragment"
-        android:label="MyOrderFragment" />
+        android:label="MyOrderFragment" >
+        <action
+            android:id="@+id/action_myOrderFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
+        <action
+            android:id="@+id/action_myOrderFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_myOrderFragment_to_userMapsFragment"
+            app:destination="@id/userMapsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/myOrdersMedicFragment"
         android:name="com.isu.covidvolunteer.ui.order.MyOrdersMedicFragment"
@@ -71,5 +85,37 @@
     <fragment
         android:id="@+id/myOrderOwnerFragment"
         android:name="com.isu.covidvolunteer.ui.order.MyOrderOwnerFragment"
-        android:label="MyOrderOwnerFragment" />
+        android:label="MyOrderOwnerFragment" >
+        <action
+            android:id="@+id/action_myOrderOwnerFragment_to_editOrderFragment"
+            app:destination="@id/editOrderFragment" />
+        <action
+            android:id="@+id/action_myOrderOwnerFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
+        <action
+            android:id="@+id/action_myOrderOwnerFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editOrderFragment"
+        android:name="com.isu.covidvolunteer.ui.order.EditOrderFragment"
+        android:label="EditOrderFragment" >
+        <action
+            android:id="@+id/action_editOrderFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.isu.covidvolunteer.ui.order.MapsFragment"
+        android:label="MapsFragment" >
+        <action
+            android:id="@+id/action_mapsFragment_to_editOrderFragment"
+            app:destination="@id/editOrderFragment"
+            app:popUpTo="@id/mapsFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/userMapsFragment"
+        android:name="com.isu.covidvolunteer.ui.order.UserMapsFragment"
+        android:label="UserMapsFragment" />
 </navigation>

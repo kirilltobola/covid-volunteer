@@ -4,77 +4,107 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/myOrderUserHeadlineTextView"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:textSize="30sp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/myOrderUserOwnerTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        app:cardCornerRadius="20dp">
 
-        android:textSize="20sp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/myOrderUserHeadlineTextView"  />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/myOrderUserAddressFromTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/myOrderUserHeadlineTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:text="headline"
 
-        android:textSize="20sp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/myOrderUserOwnerTextView"  />
+                android:textSize="30sp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/myOrderUserAddressToTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/myOrderUserOwnerTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="owner"
 
-        android:textSize="20sp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/myOrderUserAddressFromTextView"  />
+                android:textSize="20sp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/myOrderUserHeadlineTextView"  />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/myOrderUserCommentTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/myOrderUserAddressFromTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
 
-        android:textSize="20sp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/myOrderUserAddressToTextView"  />
+                android:textSize="20sp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/myOrderUserOwnerTextView"  />
 
-    <Button
-        android:id="@+id/myOrderDeclineButton"
-        android:text="Отказаться"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/myOrderUserCommentTextView"
-        app:layout_constraintLeft_toLeftOf="parent" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/myOrderUserAddressToTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
 
-    <Button
-        android:id="@+id/myOrderStartChatButton"
-        android:text="Начать чат"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        app:layout_constraintTop_toBottomOf="@id/myOrderUserCommentTextView"
-        app:layout_constraintLeft_toRightOf="@id/myOrderDeclineButton" />
+                android:textSize="20sp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/myOrderUserAddressFromTextView"  />
 
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/myOrderUserCommentTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+
+                android:textSize="20sp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/myOrderUserAddressToTextView"  />
+
+            <Button
+                android:id="@+id/myOrderDeclineButton"
+                android:text="Отказаться"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/myOrderUserCommentTextView"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_margin="5dp"/>
+
+            <Button
+                android:id="@+id/myOrderStartChatButton"
+                android:text="Начать чат"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="5dp"
+
+                app:layout_constraintTop_toBottomOf="@id/myOrderUserCommentTextView"
+                app:layout_constraintLeft_toRightOf="@id/myOrderDeclineButton" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

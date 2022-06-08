@@ -3,6 +3,8 @@ package com.isu.covidvolunteer.api
 import com.isu.covidvolunteer.models.order.OrderDto
 import com.isu.covidvolunteer.models.user.ChangePasswordDto
 import com.isu.covidvolunteer.models.user.UserDto
+import com.isu.covidvolunteer.retrofit.ApiError
+import com.isu.covidvolunteer.retrofit.CustomResponse
 import retrofit2.http.*
 
 interface UserApi {
@@ -10,13 +12,13 @@ interface UserApi {
     suspend fun getUser(
         @Header("Authorization") token: String,
         @Path("id") id: Long
-    ): UserDto
+    ): GenericUserResponse<UserDto>//UserDto
 
     @GET("users/{id}/orders/")
     suspend fun getUserOrders(
         @Header("Authorization") token: String,
         @Path("id") id: Long
-    ): List<OrderDto>
+    ): GenericUserResponse<List<OrderDto>>//List<OrderDto>
 
     @PATCH("users/{id}")
     suspend fun editUser(
@@ -37,6 +39,6 @@ interface UserApi {
         @Header("Authorization") token: String,
         @Path("id") id: Int
     )
-
-    // TODO: fun verify()
 }
+
+typealias GenericUserResponse<S> = CustomResponse<S, ApiError>

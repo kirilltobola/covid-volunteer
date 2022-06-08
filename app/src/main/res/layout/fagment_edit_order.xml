@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        android:layout_marginHorizontal="20dp"
+        app:cardCornerRadius="20dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp">
+
+            <EditText
+                android:id="@+id/fragmentEditOrderHeadlineEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Заголовок"
+
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/fragmentEditOrderAddressFromEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Откуда"
+                android:textSize="20sp"
+                android:textColorHint="@color/blue"
+
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fragmentEditOrderHeadlineEditText" />
+
+            <TextView
+                android:id="@+id/fragmentEditOrderAddressToEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Куда"
+                android:textColorHint="@color/blue"
+                android:textSize="20sp"
+
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fragmentEditOrderAddressFromEditText" />
+
+            <TextView
+                android:id="@+id/fragmentEditOrderOrderDateEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Выберите дату"
+                android:textSize="20sp"
+                android:textColorHint="@color/blue"
+
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fragmentEditOrderAddressToEditText" />
+
+            <TextView
+                android:id="@+id/fragmentEditOrderOrderTimeEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Выберите время"
+                android:textColorHint="@color/blue"
+                android:textSize="20sp"
+
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fragmentEditOrderOrderDateEditText" />
+
+            <EditText
+                android:id="@+id/fragmentEditOrderOrderCommentEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Комментарий"
+
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fragmentEditOrderOrderTimeEditText" />
+
+            <Button
+                android:id="@+id/fragmentEditOrderEditOrderButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+
+                android:text="Редактировать"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fragmentEditOrderOrderCommentEditText" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

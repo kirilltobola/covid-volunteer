@@ -5,15 +5,18 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.isu.covidvolunteer.models.auth.AuthDto
 import com.isu.covidvolunteer.models.auth.AuthResponse
+import com.isu.covidvolunteer.models.auth.RegisterUserDto
 import com.isu.covidvolunteer.repository.AuthRepository
+import com.isu.covidvolunteer.retrofit.ApiError
+import com.isu.covidvolunteer.retrofit.CustomResponse
 import kotlinx.coroutines.launch
 
 class AuthViewModel(private val repository: AuthRepository) : ViewModel() {
-    val response: MutableLiveData<AuthResponse> = MutableLiveData()
+    val response: MutableLiveData<CustomResponse<AuthResponse, ApiError>> = MutableLiveData()
 
-    fun register(authDto: AuthDto) {
+    fun register(registerDto: RegisterUserDto) {
         viewModelScope.launch {
-            response.value = repository.register(authDto)
+            response.value = repository.register(registerDto)
         }
     }
 

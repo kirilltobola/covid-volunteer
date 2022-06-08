@@ -3,32 +3,48 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.384375" />
+        <entry key="../../.gradle/caches/transforms-3/ec8778f597115131b77fc5968136215d/transformed/core-1.7.0/res/drawable-v21/notification_action_background.xml" value="0.3135" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.19" />
+        <entry key="app/src/main/res/drawable/chat.xml" value="0.252" />
+        <entry key="app/src/main/res/drawable/close.xml" value="0.252" />
+        <entry key="app/src/main/res/drawable/done.xml" value="0.252" />
+        <entry key="app/src/main/res/drawable/edit.xml" value="0.1905" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.19" />
+        <entry key="app/src/main/res/drawable/logout.xml" value="0.2015" />
+        <entry key="app/src/main/res/drawable/person.xml" value="0.19" />
+        <entry key="app/src/main/res/drawable/profile_picture.xml" value="0.3245" />
+        <entry key="app/src/main/res/drawable/send_message.xml" value="0.252" />
         <entry key="app/src/main/res/layout-w1240dp/activity_login.xml" value="0.11680053547523427" />
         <entry key="app/src/main/res/layout-w936dp/activity_login.xml" value="0.136328125" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/chat_message.xml" value="0.35625" />
+        <entry key="app/src/main/res/layout/fagment_edit_order.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/fragment_active_orders.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_add_order.xml" value="0.322463768115942" />
         <entry key="app/src/main/res/layout/fragment_chat.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_chats.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/fragment_main.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/fragment_maps.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_my_order_user.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/fragment_my_orders.xml" value="0.20087336244541484" />
-        <entry key="app/src/main/res/layout/fragment_my_orders_medic.xml" value="0.15353260869565216" />
+        <entry key="app/src/main/res/layout/fragment_my_orders_medic.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_order.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_order_user.xml" value="0.35625" />
-        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.45984455958549225" />
         <entry key="app/src/main/res/layout/fragment_splash.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/gragment_my_orders_medic.xml" value="0.35625" />
+        <entry key="app/src/main/res/layout/item_chat.xml" value="0.9" />
+        <entry key="app/src/main/res/layout/item_chat_me.xml" value="0.33" />
         <entry key="app/src/main/res/layout/my_order_owner.xml" value="0.25" />
         <entry key="app/src/main/res/layout/recyclerview_item.xml" value="0.33" />
         <entry key="app/src/main/res/layout/recyclerview_view.xml" value="0.35625" />
+        <entry key="app/src/main/res/layout/register.xml" value="0.35625" />
         <entry key="app/src/main/res/menu/menu_bottom_nav_medic.xml" value="0.35625" />
         <entry key="app/src/main/res/menu/menu_bottom_navigation_view.xml" value="0.35625" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.3135" />
         <entry key="app/src/main/res/xml/netword_config.xml" value="0.18177083333333333" />
       </map>
     </option>

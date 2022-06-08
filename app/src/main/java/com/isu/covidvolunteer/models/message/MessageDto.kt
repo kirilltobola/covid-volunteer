@@ -6,5 +6,6 @@ import com.isu.covidvolunteer.models.user.UserDto
 
 data class MessageDto(
     @JsonProperty("body") val body: String,
-    @JsonProperty("sender") val sender: UserDto
+    @JsonProperty("sender") val sender: UserDto,
+    @JsonProperty("created") val created: String
 )

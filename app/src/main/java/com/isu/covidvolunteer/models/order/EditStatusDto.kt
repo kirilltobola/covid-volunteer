@@ -1,3 +1,6 @@
 package com.isu.covidvolunteer.models.order
 
-data class EditStatusDto(val status: String)
+@Deprecated("this feature removed")
+data class EditStatusDto(val status: String) {
+    // TODO: delete me im depricated
+}

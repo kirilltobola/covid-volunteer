@@ -1,20 +1,21 @@
 package com.isu.covidvolunteer.util
 
+import com.isu.covidvolunteer.BuildConfig
 import com.isu.covidvolunteer.api.AuthApi
 import com.isu.covidvolunteer.api.ChatApi
 import com.isu.covidvolunteer.api.OrderApi
 import com.isu.covidvolunteer.api.UserApi
+import com.isu.covidvolunteer.retrofit.CustomResponseCallAdapterFactory
 import retrofit2.Retrofit
 import retrofit2.converter.jackson.JacksonConverterFactory
 
 object Retrofit {
-    // TODO: use properties file.
-    // "http://10.0.2.2:8080/api/v1/"
-    private const val BASE_URL = "https://slippery-tiger-35.loca.lt/api/v1/"
+    private const val BASE_URL = BuildConfig.API_URL
 
     private val retrofit by lazy {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
+            .addCallAdapterFactory(CustomResponseCallAdapterFactory())
             .addConverterFactory(JacksonConverterFactory.create())
             .build()
     }

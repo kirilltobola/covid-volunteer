@@ -19,4 +19,6 @@
     <string name="profile">Профиль</string>
     <string name="title_active_orders">Заказы</string>
     <string name="title_profile">Профиль</string>
+    <string name="channel_name">CHAT_SERVICE_CHANNEL</string>
+    <string name="channel_description">CHAT_SERVICE_DESC</string>
 </resources>

@@ -1,21 +1,60 @@
 package com.isu.covidvolunteer.ui.auth
 
+import android.content.Context.MODE_PRIVATE
 import android.os.Bundle
-import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.gson.Gson
 import com.isu.covidvolunteer.R
 import com.isu.covidvolunteer.models.auth.AuthDto
+import com.isu.covidvolunteer.models.auth.AuthResponse
 import com.isu.covidvolunteer.repository.AuthRepository
+import com.isu.covidvolunteer.retrofit.CustomResponse
 import com.isu.covidvolunteer.util.UserDetails
+import kotlinx.android.synthetic.main.fragment_login.view.*
 
 class LoginFragment : Fragment(R.layout.fragment_login) {
     private lateinit var authViewModel: AuthViewModel
+
+    // Views
+    private lateinit var usernameField: EditText
+    private lateinit var passwordField: EditText
+    private lateinit var registerButton: Button
+    private lateinit var loginButton: Button
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.fragment_login, container, false)
+
+        usernameField = view.findViewById(R.id.usernameEditText)
+        passwordField = view.findViewById(R.id.passwordEditText)
+
+        loginButton = view.findViewById(R.id.loginButton)
+        loginButton.setOnClickListener {
+            loginButton.isEnabled = false
+            val username = usernameField.text.toString()
+            val password = passwordField.text.toString()
+            authViewModel.login(AuthDto(username, password))
+        }
+
+        registerButton = view.findViewById(R.id.registerButton)
+        registerButton.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+        }
+
+        return view
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -25,19 +64,48 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             AuthViewModelFactory(AuthRepository())
         )[AuthViewModel::class.java]
 
-        view.findViewById<Button>(R.id.loginButton).setOnClickListener {
-            val username = view.findViewById<EditText>(R.id.usernameEditText).text.toString()
-            val password = view.findViewById<EditText>(R.id.passwordEditText).text.toString()
+        authViewModel.response.observe(viewLifecycleOwner, Observer {
+            when (it) {
+                is CustomResponse.Success -> {
+                    authenticateUser(it.body)
+                    view.postDelayed({
+                        findNavController().navigate(R.id.action_loginFragment_to_mainFragment)
+                    }, 2000)
+                }
+                is CustomResponse.NetworkError -> {
+                    loginButton.isEnabled = false
+                    val msg = "Отсутсвтует интернет соединение"
+                    Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+                }
+                is CustomResponse.ApiError -> {
+                    loginButton.isEnabled = false
+                    highlightTextFields(it.body.details)
+                    val msg = it.body.message
+                    Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+                }
+                is CustomResponse.UnexpectedError -> {
+                    loginButton.isEnabled = false
+                    val msg = "Неизвестная ошибка"
+                    Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
+    }
 
-            authViewModel.login(AuthDto(username, password))
-            authViewModel.response.observe(viewLifecycleOwner, Observer {
-                Log.d("AUTH_RESPONSE", it.toString())
-                UserDetails.authenticate(it)
-            })
+    private fun highlightTextFields(details: List<String>) {
+        usernameField.error = details.toString()
+        passwordField.error = details.toString()
+    }
 
-            view.postDelayed({
-                findNavController().navigate(R.id.action_loginFragment_to_mainFragment)
-            }, 3000)
-        }
+    private fun authenticateUser(response: AuthResponse) {
+        val sharedPrefs = requireActivity().getSharedPreferences(
+            "VOLUNTEER_API",
+            MODE_PRIVATE
+        )
+        val editor = sharedPrefs.edit()
+        editor.putString("UserDetails", Gson().toJson(response))
+        editor.apply()
+
+        UserDetails.authenticate(response)
     }
 }

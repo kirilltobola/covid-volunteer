@@ -3,6 +3,7 @@ package com.isu.covidvolunteer.util
 import com.isu.covidvolunteer.models.auth.AuthResponse
 import com.isu.covidvolunteer.models.auth.TokenDto
 import com.isu.covidvolunteer.models.role.RoleDto
+import java.util.*
 
 object UserDetails {
     var id: Long? = null
@@ -16,8 +17,10 @@ object UserDetails {
     }
 
     fun isTokenValid(): Boolean {
-        // TODO: check expiration date
-        return token?.token != null
+        if (token != null) {
+            if (token!!.expiresIn > Date()) return true
+        }
+        return false
     }
 
     fun hasRole(role: RoleDto): Boolean = roles?.contains(role)!!
