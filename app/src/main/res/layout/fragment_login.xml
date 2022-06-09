@@ -9,8 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:text="Мед Волонтер"
-        android:textSize="40dp"
+        android:text="@string/app_name"
+        android:textSize="40sp"
         android:gravity="center"
         android:textColor="@color/purple_500"
 
@@ -41,7 +41,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Логин"
-                android:text="medic"
 
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -51,7 +50,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Пароль"
-                android:text="secret password"
 
                 app:layout_constraintTop_toBottomOf="@+id/usernameEditText"
                 app:layout_constraintLeft_toLeftOf="parent" />
