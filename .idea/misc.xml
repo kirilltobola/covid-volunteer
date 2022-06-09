@@ -8,11 +8,14 @@
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.19" />
         <entry key="app/src/main/res/drawable/chat.xml" value="0.252" />
         <entry key="app/src/main/res/drawable/close.xml" value="0.252" />
+        <entry key="app/src/main/res/drawable/decline_person.xml" value="0.199" />
         <entry key="app/src/main/res/drawable/done.xml" value="0.252" />
         <entry key="app/src/main/res/drawable/edit.xml" value="0.1905" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.19" />
+        <entry key="app/src/main/res/drawable/logo.xml" value="0.199" />
         <entry key="app/src/main/res/drawable/logout.xml" value="0.2015" />
         <entry key="app/src/main/res/drawable/person.xml" value="0.19" />
+        <entry key="app/src/main/res/drawable/profile_medic.xml" value="0.198" />
         <entry key="app/src/main/res/drawable/profile_picture.xml" value="0.3245" />
         <entry key="app/src/main/res/drawable/send_message.xml" value="0.252" />
         <entry key="app/src/main/res/layout-w1240dp/activity_login.xml" value="0.11680053547523427" />
@@ -44,7 +47,8 @@
         <entry key="app/src/main/res/layout/register.xml" value="0.35625" />
         <entry key="app/src/main/res/menu/menu_bottom_nav_medic.xml" value="0.35625" />
         <entry key="app/src/main/res/menu/menu_bottom_navigation_view.xml" value="0.35625" />
-        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.3135" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.199" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2" />
         <entry key="app/src/main/res/xml/netword_config.xml" value="0.18177083333333333" />
       </map>
     </option>

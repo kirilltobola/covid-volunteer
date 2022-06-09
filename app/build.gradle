@@ -24,7 +24,7 @@ android {
     buildTypes {
         debug {
             // buildConfigField("String", "MAPS_API_KEY", "\"" + localProperties['maps.api.key'] + "\"")
-            buildConfigField("String", "API_URL", "\"" + "https://" + localProperties['API_URL'] + "/api/v1/" + "\"")
+            buildConfigField("String", "API_URL", "\"" + "http://" + localProperties['API_URL'] + "/api/v1/" + "\"")
         }
         release {
             minifyEnabled false
