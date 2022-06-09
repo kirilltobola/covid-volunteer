@@ -68,7 +68,7 @@
                 app:layout_constraintTop_toBottomOf="@id/orderUserAddressFromTextView"  />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/orderUserCommentTextView"
+                android:id="@+id/orderUserDateTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
@@ -77,6 +77,17 @@
                 android:layout_marginTop="8dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/orderUserAddressToTextView"  />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/orderUserCommentTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:textSize="20sp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/orderUserDateTextView"  />
 
             <Button
                 android:id="@+id/orderActionButton"
