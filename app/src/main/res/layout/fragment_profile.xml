@@ -7,7 +7,7 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/profile_header"
-            app:cardBackgroundColor="@color/purple_500"
+            app:cardBackgroundColor="@color/test_primary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toLeftOf="parent"
