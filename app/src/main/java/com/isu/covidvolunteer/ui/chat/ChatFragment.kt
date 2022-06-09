@@ -46,6 +46,7 @@ class ChatFragment : Fragment(R.layout.fragment_chat) {
                 val chatId = arguments?.get("chatId") as Long
                 chatViewModel.sendMessage(chatId, message)
                 messageFieldView.text.clear()
+                Thread.sleep(100)
                 chatViewModel.getChatMessages(chatId)
             }
         }

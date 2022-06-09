@@ -2,8 +2,10 @@ package com.isu.covidvolunteer.ui.chat
 
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -34,20 +36,25 @@ class ChatsFragment : Fragment(R.layout.fragment_chats) {
         chatViewModel.chats.observe(viewLifecycleOwner, Observer {
             when (it) {
                 is CustomResponse.Success -> {
-                    val adapter = ChatsRecyclerAdapter(it.body)
+                    if (it.body.isNotEmpty()) {
+                        view.findViewById<TextView>(R.id.chatsEmptyTextView).isVisible = false
 
-                    adapter.setOnItemClickListener(object : OnItemClickListener {
-                        override fun onItemClick(position: Int) {
-                            findNavController().navigate(
-                                R.id.action_chatsFragment_to_chatFragment,
-                                bundleOf(
-                                    "chatId" to it.body[position].id,
-                                    "userId" to "${it.body[position].user.firstName} ${it.body[position].user.lastName}"
+                        val adapter = ChatsRecyclerAdapter(it.body.asReversed())
+
+                        adapter.setOnItemClickListener(object : OnItemClickListener {
+                            override fun onItemClick(position: Int) {
+                                findNavController().navigate(
+                                    R.id.action_chatsFragment_to_chatFragment,
+                                    bundleOf(
+                                        "chatId" to it.body[position].id,
+                                        "userId" to "${it.body[position].user.firstName} ${it.body[position].user.lastName}"
+                                    )
                                 )
-                            )
-                        }
-                    })
-                    recyclerView.adapter = adapter
+                            }
+                        })
+                        recyclerView.adapter = adapter
+                    }
+
                 }
                 is CustomResponse.ApiError -> {
                     val msg = it.body.message
