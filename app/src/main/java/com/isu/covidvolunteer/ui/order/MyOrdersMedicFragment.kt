@@ -55,7 +55,8 @@ class MyOrdersMedicFragment : Fragment(R.layout.fragment_my_orders_medic) {
 
                         adapter.setOnItemClickListener(object : OnItemClickListener {
                             override fun onItemClick(position: Int) {
-                                val destination = if (it.body[position].owner.id == UserDetails.id) {
+                                val reversedPos = it.body.size - 1 - position
+                                val destination = if (it.body[reversedPos].owner.id == UserDetails.id) {
                                     R.id.action_myOrdersMedicFragment_to_myOrderOwnerFragment
                                 } else {
                                     R.id.action_myOrdersMedicFragment_to_myOrderFragment
@@ -63,9 +64,9 @@ class MyOrdersMedicFragment : Fragment(R.layout.fragment_my_orders_medic) {
                                 findNavController().navigate(
                                     destination,
                                     bundleOf(
-                                        "id" to it.body[position].id,
-                                        "ownerId" to it.body[position].owner.id,
-                                        "performerId" to it.body[position].performer?.id
+                                        "id" to it.body[reversedPos].id,
+                                        "ownerId" to it.body[reversedPos].owner.id,
+                                        "performerId" to it.body[reversedPos].performer?.id
                                     )
                                 )
                             }

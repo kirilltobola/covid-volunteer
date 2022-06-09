@@ -42,11 +42,12 @@ class ActiveOrdersFragment : Fragment(R.layout.fragment_active_orders) {
                         val adapter = OrdersAdapter(it.body.asReversed())
                         adapter.setOnItemClickListener(object : OnItemClickListener {
                             override fun onItemClick(position: Int) {
+                                val reversedPos = it.body.size - 1 - position
                                 val destination = when {
-                                    it.body[position].owner.id == UserDetails.id -> {
+                                    it.body[reversedPos].owner.id == UserDetails.id -> {
                                         R.id.action_activeOrdersFragment_to_myOrderOwnerFragment
                                     }
-                                    it.body[position].performer?.id == UserDetails.id -> {
+                                    it.body[reversedPos].performer?.id == UserDetails.id -> {
                                         R.id.action_activeOrdersFragment_to_myOrderFragment
                                     }
                                     else -> {
@@ -55,7 +56,7 @@ class ActiveOrdersFragment : Fragment(R.layout.fragment_active_orders) {
                                 }
                                 findNavController().navigate(
                                     destination,
-                                    bundleOf("id" to it.body[position].id)
+                                    bundleOf("id" to it.body[reversedPos].id)
                                 )
                             }
                         })

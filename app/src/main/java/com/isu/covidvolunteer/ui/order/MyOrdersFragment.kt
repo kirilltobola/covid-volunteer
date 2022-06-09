@@ -48,11 +48,12 @@ class MyOrdersFragment : Fragment(R.layout.fragment_my_orders) {
 
                         adapter.setOnItemClickListener(object : OnItemClickListener {
                             override fun onItemClick(position: Int) {
+                                val reversedPos = it.body.size - 1 - position
                                 findNavController().navigate(
                                     R.id.action_myOrdersFragment_to_myOrderFragment,
                                     bundleOf(
-                                        "id" to it.body[position].id,
-                                        "ownerId" to it.body[position].owner.id
+                                        "id" to it.body[reversedPos].id,
+                                        "ownerId" to it.body[reversedPos].owner.id
                                     )
                                 )
                             }
