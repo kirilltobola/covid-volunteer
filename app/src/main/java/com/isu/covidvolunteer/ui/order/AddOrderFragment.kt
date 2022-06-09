@@ -36,6 +36,7 @@ class AddOrderFragment : EditOrderFragment() {
                 "$date $time",
                 comment
             ))
+            Thread.sleep(100)
             findNavController().popBackStack()
         }
     }
