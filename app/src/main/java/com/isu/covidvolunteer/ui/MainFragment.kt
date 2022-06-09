@@ -14,9 +14,6 @@ import com.isu.covidvolunteer.service.OrderService
 import com.isu.covidvolunteer.util.UserDetails
 
 class MainFragment : Fragment(R.layout.fragment_main) {
-    // TODO: maybe delete me? private lateinit var serviceIntent: Intent
-    private lateinit var orderIntent: Intent
-
     companion object {
         const val MEDIC_ROLE = "ROLE_MEDIC"
     }
@@ -41,15 +38,11 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     private fun startChatService() {
         Intent(requireContext(), ChatService::class.java).also {
             requireActivity().startService(it)
-            //if (requireActivity().startService(it) != null) {
-                //requireActivity().stopService(it)
-            //}
         }
     }
 
     private fun startOrderService() {
-        orderIntent = Intent(requireContext(), OrderService::class.java).also {
-            // TODO: same
+        Intent(requireContext(), OrderService::class.java).also {
             requireActivity().startService(it)
         }
     }
