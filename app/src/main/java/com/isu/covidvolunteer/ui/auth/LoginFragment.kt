@@ -41,11 +41,23 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         passwordField = view.findViewById(R.id.passwordEditText)
 
         loginButton = view.findViewById(R.id.loginButton)
+        val blankMsg = "Обязательное поле"
         loginButton.setOnClickListener {
             loginButton.isEnabled = false
-            val username = usernameField.text.toString()
-            val password = passwordField.text.toString()
-            authViewModel.login(AuthDto(username, password))
+            val username = usernameField.text.toString().trim()
+            val password = passwordField.text.toString().trim()
+            if (username.isNullOrBlank()) {
+                usernameField.error = blankMsg
+                loginButton.isEnabled = true
+            } else if (password.isNullOrBlank()) {
+                passwordField.error = blankMsg
+                loginButton.isEnabled = true
+            } else if (password.length < 8) {
+                passwordField.error = "Пароль должен быть больше 8 символов"
+                loginButton.isEnabled = true
+            } else {
+                authViewModel.login(AuthDto(username, password))
+            }
         }
 
         registerButton = view.findViewById(R.id.registerButton)
@@ -73,18 +85,18 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                     }, 2000)
                 }
                 is CustomResponse.NetworkError -> {
-                    loginButton.isEnabled = false
-                    val msg = "Отсутсвтует интернет соединение"
+                    loginButton.isEnabled = true
+                    val msg = "Отсутствует интернет соединение"
                     Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
                 }
                 is CustomResponse.ApiError -> {
-                    loginButton.isEnabled = false
+                    loginButton.isEnabled = true
                     highlightTextFields(it.body.details)
                     val msg = it.body.message
                     Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
                 }
                 is CustomResponse.UnexpectedError -> {
-                    loginButton.isEnabled = false
+                    loginButton.isEnabled = true
                     val msg = "Неизвестная ошибка"
                     Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
                 }
