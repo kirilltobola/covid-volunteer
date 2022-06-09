@@ -99,7 +99,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             firstNameField.text = "${user?.firstName}"
             lastNameField.text = "${user?.lastName}"
             phoneNumber.text = "Телефон: ${user?.phone}"
-            rolesField.text = "Роль: ${user?.roles}"
+            rolesField.text = "Роль: ${user?.roles[user?.roles.size - 1]}"
 
             logoutButton.visibility = View.GONE
         }
