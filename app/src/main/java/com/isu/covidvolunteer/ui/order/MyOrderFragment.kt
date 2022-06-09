@@ -27,6 +27,7 @@ class MyOrderFragment : Fragment(R.layout.fragment_my_order_user) {
     private lateinit var orderOwnerView: TextView
     private lateinit var orderAddressFromView: TextView
     private lateinit var orderAddressToView: TextView
+    private lateinit var orderDateView: TextView
     private lateinit var orderCommentView: TextView
     private lateinit var startButton: ImageButton
     private lateinit var declineButton: ImageButton
@@ -48,6 +49,7 @@ class MyOrderFragment : Fragment(R.layout.fragment_my_order_user) {
         orderOwnerView = view.findViewById(R.id.myOrderUserOwnerTextView)
         orderAddressFromView = view.findViewById(R.id.myOrderUserAddressFromTextView)
         orderAddressToView = view.findViewById(R.id.myOrderUserAddressToTextView)
+        orderDateView = view.findViewById(R.id.myOrderUserDateTextView)
         orderCommentView = view.findViewById(R.id.myOrderUserCommentTextView)
 
         orderViewModel.getOrder(arguments?.get("id") as Long)
@@ -89,6 +91,7 @@ class MyOrderFragment : Fragment(R.layout.fragment_my_order_user) {
                         orderAddressToView.setTextColor(Color.BLUE)
                     }
 
+                    orderDateView.text = "Дата ${it.body.date}"
                     orderCommentView.text =  "Комментарий: ${it.body.comment}"
                 }
                 is CustomResponse.NetworkError -> {
