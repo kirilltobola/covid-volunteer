@@ -42,6 +42,7 @@ class OrderFragment : Fragment(R.layout.fragment_order_user) {
         respondButton = view.findViewById(R.id.orderActionButton)
         respondButton.setOnClickListener {
             orderViewModel.respondToOrder(arguments?.get("id") as Long)
+            Thread.sleep(250)
             findNavController().popBackStack()
         }
 
@@ -51,8 +52,6 @@ class OrderFragment : Fragment(R.layout.fragment_order_user) {
                 is CustomResponse.Success -> {
                     orderHeadlineView.text = "${it.body.headline}"
                     orderOwnerView.text = "Медицинский работник: ${it.body.owner.firstName} ${it.body.owner.lastName}"
-                    //orderAddressFromView.text = "Откуда: ${it.body.address?.from}"
-                    //orderAddressToView.text = "Куда: ${it.body.address?.to}"
 
                     orderAddressFromView.text = "Откуда: ${it.body.address?.from}"
                     if (!it.body.address?.from.isNullOrBlank()) {

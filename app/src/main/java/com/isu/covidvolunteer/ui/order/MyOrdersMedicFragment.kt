@@ -3,8 +3,10 @@ package com.isu.covidvolunteer.ui.order
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -34,7 +36,7 @@ class MyOrdersMedicFragment : Fragment(R.layout.fragment_my_orders_medic) {
             UserViewModelFactory(UserRepository())
         )[UserViewModel::class.java]
 
-        addOrderButton = view.findViewById<Button>(R.id.addOrderButton)
+        addOrderButton = view.findViewById(R.id.addOrderButton)
         addOrderButton.setOnClickListener {
             findNavController().navigate(R.id.action_myOrdersMedicFragment_to_addOrderFragment)
         }
@@ -46,26 +48,31 @@ class MyOrdersMedicFragment : Fragment(R.layout.fragment_my_orders_medic) {
         userViewModel.userOrders.observe(viewLifecycleOwner, Observer {
             when (it) {
                 is CustomResponse.Success -> {
-                    val adapter = OrdersAdapter(it.body)
+                    if (it.body.isNotEmpty()) {
+                        view.findViewById<TextView>(R.id.myOrdersMedicEmptyTextView).isVisible = false
 
-                    adapter.setOnItemClickListener(object : OnItemClickListener {
-                        override fun onItemClick(position: Int) {
-                            val destination = if (it.body[position].owner.id == UserDetails.id) {
-                                R.id.action_myOrdersMedicFragment_to_myOrderOwnerFragment
-                            } else {
-                                R.id.action_myOrdersMedicFragment_to_myOrderFragment
-                            }
-                            findNavController().navigate(
-                                destination,
-                                bundleOf(
-                                    "id" to it.body[position].id,
-                                    "ownerId" to it.body[position].owner.id,
-                                    "performerId" to it.body[position].performer?.id
+                        val adapter = OrdersAdapter(it.body.asReversed())
+
+                        adapter.setOnItemClickListener(object : OnItemClickListener {
+                            override fun onItemClick(position: Int) {
+                                val destination = if (it.body[position].owner.id == UserDetails.id) {
+                                    R.id.action_myOrdersMedicFragment_to_myOrderOwnerFragment
+                                } else {
+                                    R.id.action_myOrdersMedicFragment_to_myOrderFragment
+                                }
+                                findNavController().navigate(
+                                    destination,
+                                    bundleOf(
+                                        "id" to it.body[position].id,
+                                        "ownerId" to it.body[position].owner.id,
+                                        "performerId" to it.body[position].performer?.id
+                                    )
                                 )
-                            )
-                        }
-                    })
-                    recyclerView.adapter = adapter
+                            }
+                        })
+                        recyclerView.adapter = adapter
+                    }
+
                 }
                 is CustomResponse.NetworkError -> {
                     val msg = "Отсутсвтует интернет соединение"

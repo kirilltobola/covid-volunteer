@@ -2,7 +2,10 @@ package com.isu.covidvolunteer.ui.order
 
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
+import android.widget.Toast
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -38,20 +41,37 @@ class MyOrdersFragment : Fragment(R.layout.fragment_my_orders) {
         userViewModel.userOrders.observe(viewLifecycleOwner, Observer {
             when (it) {
                 is CustomResponse.Success -> {
-                    var adapter = OrdersAdapter(it.body)
+                    if (it.body.isNotEmpty()) {
+                        view.findViewById<TextView>(R.id.myOrdersEmptyTextView).isVisible = false
 
-                    adapter.setOnItemClickListener(object : OnItemClickListener {
-                        override fun onItemClick(position: Int) {
-                            findNavController().navigate(
-                                R.id.action_myOrdersFragment_to_myOrderFragment,
-                                bundleOf(
-                                    "id" to it.body[position].id,
-                                    "ownerId" to it.body[position].owner.id
+                        val adapter = OrdersAdapter(it.body.asReversed())
+
+                        adapter.setOnItemClickListener(object : OnItemClickListener {
+                            override fun onItemClick(position: Int) {
+                                findNavController().navigate(
+                                    R.id.action_myOrdersFragment_to_myOrderFragment,
+                                    bundleOf(
+                                        "id" to it.body[position].id,
+                                        "ownerId" to it.body[position].owner.id
+                                    )
                                 )
-                            )
-                        }
-                    })
-                    recyclerView.adapter = adapter
+                            }
+                        })
+                        recyclerView.adapter = adapter
+                    }
+
+                }
+                is CustomResponse.NetworkError -> {
+                    val msg = "Отсутсвтует интернет соединение"
+                    Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+                }
+                is CustomResponse.ApiError -> {
+                    val msg = it.body.message
+                    Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+                }
+                is CustomResponse.UnexpectedError -> {
+                    val msg = "Неизвестная ошибка"
+                    Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
                 }
             }
 

@@ -79,7 +79,12 @@ class MyOrderOwnerFragment : Fragment(R.layout.my_order_owner) {
 
                     orderHeadlineField.text = it.body.headline
                     ownerField.text = "Медик: ${it.body.owner}"
-                    performerField.text = "Волонтер: ${it.body.performer.toString()}"
+                    if (it.body.performer != null) {
+                        performerField.text = "Волонтер: ${it.body.performer}"
+                    } else {
+                        performerField.text = "Волонтер: нет"
+                    }
+
 
                     val status = when (it.body.status) {
                         Status.ACTIVE -> "Свободный"

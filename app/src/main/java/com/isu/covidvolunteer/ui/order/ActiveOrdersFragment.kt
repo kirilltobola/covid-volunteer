@@ -2,8 +2,10 @@ package com.isu.covidvolunteer.ui.order
 
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -34,27 +36,32 @@ class ActiveOrdersFragment : Fragment(R.layout.fragment_active_orders) {
         orderViewModel.activeOrders.observe(viewLifecycleOwner, Observer {
             when (it) {
                 is CustomResponse.Success -> {
-                    val adapter = OrdersAdapter(it.body)
-                    adapter.setOnItemClickListener(object : OnItemClickListener {
-                        override fun onItemClick(position: Int) {
-                            val destination = when {
-                                it.body[position].owner.id == UserDetails.id -> {
-                                    R.id.action_activeOrdersFragment_to_myOrderOwnerFragment
+                    if (it.body.isNotEmpty()) {
+                        view.findViewById<TextView>(R.id.activeOrdersEmptyTextView).isVisible = false
+
+                        val adapter = OrdersAdapter(it.body.asReversed())
+                        adapter.setOnItemClickListener(object : OnItemClickListener {
+                            override fun onItemClick(position: Int) {
+                                val destination = when {
+                                    it.body[position].owner.id == UserDetails.id -> {
+                                        R.id.action_activeOrdersFragment_to_myOrderOwnerFragment
+                                    }
+                                    it.body[position].performer?.id == UserDetails.id -> {
+                                        R.id.action_activeOrdersFragment_to_myOrderFragment
+                                    }
+                                    else -> {
+                                        R.id.action_activeOrdersFragment_to_orderFragment
+                                    }
                                 }
-                                it.body[position].performer?.id == UserDetails.id -> {
-                                    R.id.action_activeOrdersFragment_to_myOrderFragment
-                                }
-                                else -> {
-                                    R.id.action_activeOrdersFragment_to_orderFragment
-                                }
+                                findNavController().navigate(
+                                    destination,
+                                    bundleOf("id" to it.body[position].id)
+                                )
                             }
-                            findNavController().navigate(
-                                destination,
-                                bundleOf("id" to it.body[position].id)
-                            )
-                        }
-                    })
-                    recyclerView.adapter = adapter
+                        })
+                        recyclerView.adapter = adapter
+                    }
+
                 }
                 is CustomResponse.NetworkError -> {
                     val msg = "Отсутсвтует интернет соединение"

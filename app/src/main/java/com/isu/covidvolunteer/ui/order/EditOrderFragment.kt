@@ -142,51 +142,16 @@ open class EditOrderFragment : Fragment(R.layout.fagment_edit_order) {
         // Submit button
         editButton.setOnClickListener {
             makeRequest(order)
-//            val geocoder = Geocoder(context, Locale("RU"))
-//            if (!orderAddressFrom.text.toString().isNullOrBlank()) {
-//                val loc = geocoder.getFromLocationName(orderAddressFrom.text.toString(), 1)
-//            }
-//
-//
-//            val headline = orderHeadline.text.toString()
-//            val from = orderAddressFrom.text.toString()//loc[0].getAddressLine(0)
-//            val to = orderAddressTo.text.toString()
-//            val date = orderDate.text.toString()
-//            val time = orderTime.text.toString()
-//            val comment = orderComment.text.toString()
-//
-//            if (headline.isNullOrBlank()) {
-//                orderHeadline.error = "Заполните заголовок"
-//            } else {
-//                order?.headline = headline
-//                order?.address = Address(from, to)
-//                order?.date = "$date $time"
-//                order?.comment = comment
-//
-//                if (order != null) {
-//                    orderViewModel.edit(order)
-//                    Log.d("EDIT_ORDER", "EDITED")
-//
-//                    findNavController().popBackStack(R.id.editOrderFragment, true)
-//                }
-//            }
         }
     }
 
     open fun makeRequest(order: OrderDto?) {
-        val geocoder = Geocoder(context, Locale("RU"))
-        if (!orderAddressFrom.text.toString().isNullOrBlank()) {
-            val loc = geocoder.getFromLocationName(orderAddressFrom.text.toString(), 1)
-        }
-
-
         val headline = orderHeadline.text.toString()
-        val from = orderAddressFrom.text.toString()//loc[0].getAddressLine(0)
+        val from = orderAddressFrom.text.toString()
         val to = orderAddressTo.text.toString()
         val date = orderDate.text.toString()
         val time = orderTime.text.toString()
         val comment = orderComment.text.toString()
-
 
         val errorMsg = "Обязательное поле"
         if (headline.isNullOrBlank()) {
@@ -201,8 +166,10 @@ open class EditOrderFragment : Fragment(R.layout.fagment_edit_order) {
             order?.comment = comment
 
             if (order != null) {
+                editButton.isEnabled = false
                 orderViewModel.edit(order)
                 Log.d("EDIT_ORDER", "EDITED")
+                Thread.sleep(250)
 
                 findNavController().popBackStack(R.id.editOrderFragment, true)
             }

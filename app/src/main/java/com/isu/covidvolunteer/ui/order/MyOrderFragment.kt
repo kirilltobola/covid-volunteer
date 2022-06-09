@@ -3,10 +3,9 @@ package com.isu.covidvolunteer.ui.order
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -29,8 +28,8 @@ class MyOrderFragment : Fragment(R.layout.fragment_my_order_user) {
     private lateinit var orderAddressFromView: TextView
     private lateinit var orderAddressToView: TextView
     private lateinit var orderCommentView: TextView
-    private lateinit var startButton: Button
-    private lateinit var declineButton: Button
+    private lateinit var startButton: ImageButton
+    private lateinit var declineButton: ImageButton
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -62,9 +61,7 @@ class MyOrderFragment : Fragment(R.layout.fragment_my_order_user) {
                                 bundleOf("user" to it.body.owner)
                             )
                         }
-                        orderOwnerView.setTextColor(
-                            ContextCompat.getColor(requireContext(), R.color.pink)
-                        )
+                        orderOwnerView.setTextColor(Color.BLUE)
                     }
 
                     orderHeadlineView.text = "${it.body.headline}"
@@ -143,6 +140,7 @@ class MyOrderFragment : Fragment(R.layout.fragment_my_order_user) {
         declineButton = view.findViewById(R.id.myOrderDeclineButton)
         declineButton.setOnClickListener {
             orderViewModel.decline(arguments?.get("id") as Long)
+            Thread.sleep(250)
             findNavController().popBackStack()
         }
     }
