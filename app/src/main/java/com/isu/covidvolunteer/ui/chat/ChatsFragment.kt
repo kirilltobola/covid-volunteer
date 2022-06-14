@@ -40,14 +40,14 @@ class ChatsFragment : Fragment(R.layout.fragment_chats) {
                         view.findViewById<TextView>(R.id.chatsEmptyTextView).isVisible = false
 
                         val adapter = ChatsRecyclerAdapter(it.body.asReversed())
-
                         adapter.setOnItemClickListener(object : OnItemClickListener {
                             override fun onItemClick(position: Int) {
+                                val reversedPos = it.body.size - 1 - position
                                 findNavController().navigate(
                                     R.id.action_chatsFragment_to_chatFragment,
                                     bundleOf(
-                                        "chatId" to it.body[position].id,
-                                        "userId" to "${it.body[position].user.firstName} ${it.body[position].user.lastName}"
+                                        "chatId" to it.body[reversedPos].id,
+                                        "userId" to "${it.body[reversedPos].user.firstName} ${it.body[reversedPos].user.lastName}"
                                     )
                                 )
                             }
