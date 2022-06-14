@@ -1,6 +1,7 @@
 package com.isu.covidvolunteer.ui.auth
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -63,18 +64,20 @@ class RegisterFragment : Fragment(R.layout.register) {
 
             if (valid) {
                 submitButton.isEnabled = false
-                authViewModel.register(RegisterUserDto(
-                    usernameField.text.toString(),
-                    passwordField.text.toString(),
-                    phoneField.text.toString(),
-                    firstNameField.text.toString(),
-                    lastNameField.text.toString(),
+                val userData = RegisterUserDto(
+                    usernameField.text.toString().trim(),
+                    passwordField.text.toString().trim(),
+                    phoneField.text.toString().trim(),
+                    firstNameField.text.toString().trim(),
+                    lastNameField.text.toString().trim(),
                     isMedicSwitch.isChecked
-                ))
+                )
+                authViewModel.register(userData)
 
                 authViewModel.response.observe(viewLifecycleOwner, Observer {
                     when (it) {
                         is CustomResponse.Success -> {
+                            Log.d("D_REGISTER", it.body.roles.toString())
                             Toast.makeText(
                                 context,
                                 "Вы успешно зарегистрировались",

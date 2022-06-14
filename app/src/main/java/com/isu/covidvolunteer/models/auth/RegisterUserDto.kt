@@ -8,5 +8,9 @@ data class RegisterUserDto (
     @JsonProperty("phone") val phone: String,
     @JsonProperty("firstName") val firstName: String,
     @JsonProperty("lastName") val lastName: String,
-    @JsonProperty("isMedic") val isMedic: Boolean
-)
+    @JsonProperty("medic") val isMedic: Boolean
+) {
+    override fun toString(): String {
+        return "$username $isMedic $firstName $lastName"
+    }
+}
